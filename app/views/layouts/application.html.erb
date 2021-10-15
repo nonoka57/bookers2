@@ -14,9 +14,9 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="/">
-            <span>Bookers</span>
-          </a>
+          <%= link_to root_path, class:"navbar-brand" do %>
+           <span>Bookers</span>
+          <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -25,7 +25,7 @@
              <% if user_signed_in? %>
              <!--あとで変更する-->
              <li>
-               <a class="fas fa-home nav-link text-light" href=""> Home</a>
+               <%= link_to "Home", root_path, class:"fas fa-home nav-link text-light" %>
              </li>
              <li>
                <a class="fas fa-users nav-link text-light" href=""> Users</a>
@@ -34,20 +34,20 @@
                <a class="fas fa-book-open nav-link text-light" href=""> Books</a>
              </li>
              <li>
-               <a class="fas fa-sign-out-alt nav-link text-light" href="">Log out</a>
+               <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-light" %>
              </li>
              <% else %>
              <li>
-               <a class="fas fa-home nav-link text-light" href=""> Home</a>
+               <%= link_to "Home", root_path, class:"fas fa-home nav-link text-light" %>
              </li>
              <li>
-               <a class="fas fa-link nav-link text-light" href=""> About</a>
+               <%= link_to "About", home_about_path, class:"fas fa-link nav-link text-light" %>
              </li>
              <li>
-               <a class="fas fa-user-plus nav-link text-light" href=""> Sign up</a>
+               <%= link_to "Sign up", new_user_registration_path, class:"fas fa-user-plus nav-link text-light" %>
              </li>
              <li>
-               <a class="fas fa-sign-in-alt nav-link text-light" href=""> Log in</a>
+               <%= link_to "Log in", new_user_session_path, class:"fas fa-sign-in-alt nav-link text-light" %>
              </li>
              <% end %>
            </ul>
