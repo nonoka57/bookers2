@@ -16,21 +16,18 @@
           </thead>
           <tbody>
             <tr>
-              
-            <% @books.each do |book| %>
-            <td>
+              <% @users.each do |user| %>
+              <td>
                 <%= image_tag 'noimage.jpg', class:"attachment user profile_image fallback" %>
               </td>
               <td>
-                <%= link_to book.title, book_path(book.id) %>
+                <%= user.name %>
               </td>
               <td>
-                <%= book.body %>
+                <%= link_to "Show", user_path(user.id) %>
               </td>
-              
+              <% end %>
             </tr>
-            <% end %>
-            
           </tbody>
         </table>
       </div>
