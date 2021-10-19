@@ -1,6 +1,20 @@
 <main>
   <p id="notice"><%= flash[:notice] %> </p>
   <div class="container px-5 px-sm-0">
+    
+     <div id ="error_explanation">
+      <% if @book.errors.any? %>
+      <h3>
+      <%= @book.errors.count %>errors prohibited this obj from being saved:
+      </h3>
+      <ul>
+      <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+      </ul>
+      <% end %>
+    </div>
+    
     <div class="row">
       
       <%= render 'books/new', book: @book, user: @user %>
@@ -19,7 +33,7 @@
             <tr>
             <% @books.each do |book| %>
               <td>
-                <%= link_to user_path(@user.id) do %>
+                <%= link_to user_path(book.id) do %>
                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:"noimage.jpg" %>
                 <% end %>
               </td>
