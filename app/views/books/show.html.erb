@@ -25,10 +25,10 @@
           <tbody>
             <tr>
               <td>
-                <%= link_to user_path(@user.id) do %>
+                <%= link_to user_path(@books.user.id) do %>
                 <%= attachment_image_tag @books.user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:"noimage.jpg" %>
                 </br>
-                <%= @user.name %>
+                <%= @books.user.name %>
                 <% end %>
               </td>
               <td><%= link_to @books.title, book_path(@books) %></td>
