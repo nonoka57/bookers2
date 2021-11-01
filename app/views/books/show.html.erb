@@ -61,25 +61,27 @@
               </tr>
               
               
-             <table class="table">
-                 
-                  <% @books.book_comments.each do |comment| %>
+             <table>
+               <tbody>
+                <tr>
+                    <% @books.book_comments.each do |comment| %>
                   <td>
-                    <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:"noimage.jpg" %>
-                    </br>
-                   <%= comment.user.name %>
+                      <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:"noimage.jpg" %>
+                      </br>
+                      <%= comment.user.name %>
                   </td>
                   <td>
-                   <%= comment.comment %>
+                     <%= comment.comment %>
                   </td>
                   <td>
-                    <% if comment.user == current_user %>
-                     <%= link_to "Destroy", book_book_comments_path(comment.book,comment), method: :delete, class:"btn btn-sm btn-danger" %>
-                    <% end %>
+                      <% if comment.user == current_user %>
+                       <%= link_to "Destroy", book_book_comments_path(comment.book,comment), method: :delete, class:"btn btn-sm btn-danger" %>
+                      <% end %>
                   </td>
-                  <% end %>
-                  </tr>
-                </table>
+                </tr>
+                <% end %>
+              </tbody>
+             </table>
                   
                   <div class="form_group">
                   <%= form_with(model: [@books,@book_comment], local: true) do |f| %>
