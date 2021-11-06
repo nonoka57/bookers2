@@ -45,8 +45,8 @@
               <%= book.body %>
             </td>
 
-            <td>
-                <%= render 'books/favorite', book: book %>
+            <td id ="favorite_btn_<%= book.id %>">
+                <%= render partial: 'books/favorite', locals: {book: book} %>
             </td>
 
             <td>

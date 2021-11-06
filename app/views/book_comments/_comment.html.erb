@@ -1,0 +1,9 @@
+</table>
+  <div class="form_group">
+    <%= form_with(model: [books,book_comment], remote: true) do |f| %>
+     <%= f.text_area :comment, class:"form-control" %>
+     </div>
+     <%= f.submit "送信" %>
+     
+    <% end %>
+</table>

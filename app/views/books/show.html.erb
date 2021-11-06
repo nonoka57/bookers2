@@ -56,37 +56,31 @@
               
               
              <table>
+               
                <tbody>
-                <tr>
+                  <tr>
                     <% @books.book_comments.each do |comment| %>
-                  <td>
-                      <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:"noimage.jpg" %>
-                      </br>
-                      <%= comment.user.name %>
-                  </td>
-                  <td>
-                     <%= comment.comment %>
-                  </td>
-                  <td>
-                      <% if comment.user == current_user %>
-                       <%= link_to "Destroy", book_book_comments_path(comment.book,comment), method: :delete, class:"btn btn-sm btn-danger" %>
-                      <% end %>
-                  </td>
-                </tr>
-                <% end %>
-              </tbody>
-             </table>
-                  
-                  <div class="form_group">
-                  <%= form_with(model: [@books,@book_comment], local: true) do |f| %>
-                   <%= f.text_area :comment, class:"form-control" %>
-                   </div>
-                   <%= f.submit "送信" %>
-                   
+                    <td>
+                        <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:"noimage.jpg" %>
+                        </br>
+                        <%= comment.user.name %>
+                    </td>
+                    <td>
+                       <%= comment.comment %>
+                    </td>
+                    <td>
+                        <% if comment.user == current_user %>
+                         <%= link_to "Destroy", book_book_comments_path(comment.book,comment), method: :delete, class:"btn btn-sm btn-danger" %>
+                        <% end %>
+                    </td>
+                  </tr>
                   <% end %>
-                
-                
-            </table>
+                  </tbody>
+               
+               <div id ="comment_<% @books.id %>">
+               <%= render partial: 'book_comments/comment', locals: {books: @books, book_comment: @book_comment} %>
+               </div>
+               
           </tbody>
         </table>
       </div>
