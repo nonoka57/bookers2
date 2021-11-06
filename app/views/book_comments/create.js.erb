@@ -1,2 +1,2 @@
-$('#comment<%= @books.id %>').html("<%= render j('book_comments/comment', book: book) %>");
+$('#comment').html("<%= j(render 'book_comments/comment', books: @book) %>");
 $("textarea").val('');

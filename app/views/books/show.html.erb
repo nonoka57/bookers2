@@ -36,7 +36,7 @@
               <td>
                 <%= @books.body %>
               </td>
-              <td>
+              <td id="favorite_btn_<%= @books.id %>">
                 <%= render 'books/favorite', book: @books %>
               </td>
               <td>
@@ -55,7 +55,7 @@
               </tr>
               
               
-             <table>
+             <table id="comment">
                
                <tbody>
                   <tr>
@@ -77,8 +77,18 @@
                   <% end %>
                   </tbody>
                
-               <div id ="comment_<% @books.id %>">
-               <%= render partial: 'book_comments/comment', locals: {books: @books, book_comment: @book_comment} %>
+               <div id ="comment_<%= @book.id %>">
+                 <div class="form_group">
+                    <%= form_with model: [@books, @book_comment] do |f| %>
+                     <%= f.text_area :comment, class:"form-control" %>
+                     </div>
+                     <%= f.submit "送信" %>
+                     
+                    <% end %>
+                 
+                 
+                 
+               
                </div>
                
           </tbody>
