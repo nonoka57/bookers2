@@ -56,27 +56,10 @@
               
               
              <table id="comment">
+               <%= render 'book_comments/comment', books: @books %>
                
-               <tbody>
-                  <tr>
-                    <% @books.book_comments.each do |comment| %>
-                    <td>
-                        <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:"noimage.jpg" %>
-                        </br>
-                        <%= comment.user.name %>
-                    </td>
-                    <td>
-                       <%= comment.comment %>
-                    </td>
-                    <td>
-                        <% if comment.user == current_user %>
-                         <%= link_to "Destroy", book_book_comments_path(comment.book,comment), method: :delete, class:"btn btn-sm btn-danger" %>
-                        <% end %>
-                    </td>
-                  </tr>
-                  <% end %>
-                  </tbody>
                
+               <table>
                <div id ="comment_<%= @book.id %>">
                  <div class="form_group">
                     <%= form_with model: [@books, @book_comment] do |f| %>
@@ -86,6 +69,7 @@
                      
                     <% end %>
                  
+                 </table>
                  
                  
                
