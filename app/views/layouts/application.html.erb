@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=devise-width, initial-scale=1, maximum-scale=1" >
 
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -53,10 +54,10 @@
           </div>
         </div>
       </nav>
-      
+
       <div class="mt-1">
           <div class="row justify-content-center">
-              
+
               <% if user_signed_in? %>
                <%= form_tag(search_path, method: :get) do %>
                 <%= text_field_tag 'content' %>
@@ -70,7 +71,7 @@
 
 
     </header>
-    
+
     <%= yield %>
     <footer>
       <div class="container mt-5">
@@ -81,6 +82,8 @@
         </div>
       </div>
     </footer>
-
+    
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.raty.js"></script>
   </body>
 </html>

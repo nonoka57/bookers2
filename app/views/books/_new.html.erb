@@ -11,17 +11,17 @@
         <th>introduction</th>
         <th><%= user.introduction %></th>
       </tr>
-      
+
       <tr>
         <th>follows</th>
         <th><%= link_to user.followings.count, user_followings_path(user.id) %></th>
       </tr>
-      
+
       <tr>
         <th>followers</th>
         <th><%= link_to user.followers.count, user_followers_path(user.id) %></th>
       </tr>
-      
+
       <tr>
         <th>
           <% if user.id != current_user.id %>
@@ -33,7 +33,7 @@
           <% end %>
         </th>
       </tr>
-      
+
     </tbody>
   </table>
   <div class="row">
@@ -50,9 +50,28 @@
       <label for="book_opinion">Opinion</label>
       <%= f.text_area :body, class:"form-control book_body"  %>
     </div>
+    <div class="form-group row" id="star">
+      <label for="book_rate">Rate</label>
+    <%= f.hidden_field :rate,  class:'col-md-1 col-form-label'  %>
+    </div>
 
     <div class="form_group">
     <%= f.submit "Create Book", class:"btn btn-success" %>
     </div>
   <% end %>
 </div>
+
+
+
+ <script type="text/javascript">
+   <!-- 評価 -->
+   $('#star').empty(); 
+    $('#star').raty({
+      size :36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'book[rate]',
+      half: true,
+    });
+  </script>

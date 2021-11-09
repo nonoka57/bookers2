@@ -12,7 +12,7 @@
       <% end %>
       </ul>
       <% end %>
-    </div>
+  </div>
 
     <div class="row">
 
@@ -42,6 +42,12 @@
               <td>
                 コメント数:<%= @books.book_comments.count %>
               </td>
+              
+              <td>
+               <div id="rate-<%= @books.id %>"></div>
+              </td>
+              
+              
               
               <% if @books.user == current_user %>
               <td>
@@ -81,3 +87,17 @@
     </div>
   </div>
 </main>
+
+<script type="text/javascript">
+ <!-- 評価 -->
+ $('#rate-<%= @books.id %>').empty(); 
+  $('#rate-<%= @books.id %>').raty({
+    readOnly: true,
+    size :36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    score: <%= @books.rate %>
+  });
+</script>
