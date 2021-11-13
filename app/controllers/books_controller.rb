@@ -1,9 +1,11 @@
 class BooksController < ApplicationController
   before_action :baria_book, only: [:edit, :destroy, :update]
+  helper_method :sort_column, :sort_direction
 
   def index
     @books = Book.all
     @book = Book.new
+    @sort = @books.order("#{sort_column} #{sort_direction}")
   end
 
   def create
@@ -46,6 +48,9 @@ class BooksController < ApplicationController
     @books.destroy
     redirect_to books_path
   end
+  
+  
+  
 
 
   private
@@ -60,7 +65,15 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
-
+  
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
+  end
+  
+  def sort_column
+    Book.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
 
 
 end
