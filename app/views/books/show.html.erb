@@ -1,21 +1,19 @@
 <main>
   <div class="container px-5 px-sm-0">
-
      <div id ="error_explanation">
-      <% if @book.errors.any? %>
-      <h3>
-      <%= @book.errors.count %>errors prohibited this obj from being saved:
-      </h3>
-      <ul>
-      <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-      </ul>
-      <% end %>
-  </div>
+        <% if @book.errors.any? %>
+          <h3>
+           <%= @book.errors.count %>errors prohibited this obj from being saved:
+          </h3>
+          <ul>
+           <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+           <% end %>
+          </ul>
+        <% end %>
+    </div>
 
     <div class="row">
-
       <%= render 'books/new', book: @book, user: @users %>
 
       <div class="col-md-8 offset-md-1">
@@ -42,45 +40,34 @@
               <td>
                 コメント数:<%= @books.book_comments.count %>
               </td>
-              
+              <td>
+                <%= @books.category_id %>
+              </td>
               <td>
                <div id="rate-<%= @books.id %>"></div>
               </td>
-              
-              
-              
+
               <% if @books.user == current_user %>
-              <td>
-                <%= link_to "Edit", edit_book_path(@books), class:"btn btn-sm btn-success" %>
-              </td>
-              <td>
-                <%= link_to "Destroy", book_path(@books), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-sm btn-danger" %>
-              </td>
+                <td>
+                  <%= link_to "Edit", edit_book_path(@books), class:"btn btn-sm btn-success" %>
+                </td>
+                <td>
+                  <%= link_to "Destroy", book_path(@books), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-sm btn-danger" %>
+                </td>
               <% end %>
-              
-              </tr>
-              
-              
-             <table id="comment">
-               <%= render 'book_comments/comment', books: @books %>
-               
-               
-               <table>
+            </tr>
+
+            <table id="comment">
+              <%= render 'book_comments/comment', books: @books %>
                <div id ="comment_<%= @book.id %>">
                  <div class="form_group">
                     <%= form_with model: [@books, @book_comment] do |f| %>
                      <%= f.text_area :comment, class:"form-control" %>
-                     </div>
+                 </div>
                      <%= f.submit "送信" %>
-                     
                     <% end %>
-                 
-                 </table>
-                 
-                 
-               
                </div>
-               
+             </table>
           </tbody>
         </table>
       </div>
@@ -90,7 +77,7 @@
 
 <script type="text/javascript">
  <!-- 評価 -->
- $('#rate-<%= @books.id %>').empty(); 
+ $('#rate-<%= @books.id %>').empty();
   $('#rate-<%= @books.id %>').raty({
     readOnly: true,
     size :36,

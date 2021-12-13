@@ -11,25 +11,24 @@
   <td>
     <%= book.body %>
   </td>
-  
+  <td>
+    <%= book.category_id %>
+  </td>
   <td id ="favorite_btn_<%= book.id %>">
     <%= render partial: 'books/favorite', locals: {book: book} %>
   </td>
-  
   <td>
     コメント数:<%= book.book_comments.count %>
   </td>
-  
   <td>
     <div id="rate-<%= book.id %>"></div>
   </td>
-  
-  </tr>
+</tr>
 
 
 <script type="text/javascript">
  <!-- 評価 -->
- $('#rate-<%= book.id %>').empty(); 
+ $('#rate-<%= book.id %>').empty();
   $('#rate-<%= book.id %>').raty({
     readOnly: true,
     size :36,
